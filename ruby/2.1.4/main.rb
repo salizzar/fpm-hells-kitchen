@@ -1,11 +1,11 @@
-class Ruby215 < FPM::Cookery::Recipe
+class Ruby214 < FPM::Cookery::Recipe
   description 'The Ruby virtual machine'
   name        'ruby'
-  version     '1:2.1.5.0'
+  version     '1:2.1.4'
   revision    0
   homepage    'http://www.ruby-lang.org/'
-  source      'http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.5.tar.bz2'
-  sha256      '0241b40f1c731cb177994a50b854fb7f18d4ad04dcefc18acc60af73046fb0a9'
+  source      'http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2'
+  sha256      'f37f11a8c75ab9215bb9f61246ef98e0e57e1409f0872e5cf59033edcf5b8d2a'
   section     'interpreters'
 
   build_depends 'autoconf', 'readline-devel', 'bison', 'zlib-devel', 'openssl-devel', 'libyaml-devel'
@@ -19,3 +19,4 @@ class Ruby215 < FPM::Cookery::Recipe
     make :install, 'DESTDIR' => destdir
   end
 end
+
