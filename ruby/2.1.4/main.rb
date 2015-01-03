@@ -1,7 +1,7 @@
 class Ruby214 < FPM::Cookery::Recipe
   description 'The Ruby virtual machine'
   name        'ruby'
-  version     '1:2.1.4'
+  version     '2.1.4'
   revision    0
   homepage    'http://www.ruby-lang.org/'
   source      'http://cache.ruby-lang.org/pub/ruby/2.1/ruby-2.1.4.tar.bz2'
