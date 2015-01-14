@@ -1,6 +1,5 @@
 class Packer075 < FPM::Cookery::Recipe
   name        'packer'
-  arch        'x86_64'
   version     '0.7.5'
   revision    0
   description 'A tool to create identical machine images for multiple platforms fro a single source configuration.'
@@ -17,7 +16,14 @@ class Packer075 < FPM::Cookery::Recipe
     folder = File.join(File.basename(source, '.zip'))
     glob = File.join(builddir(folder), '*')
 
-    Dir[glob].each { |file| bin.install(file) }
+    Dir[glob].each do |file|
+      # treatment for centos because symlink /usr/sbin/packer conflicts on PATH
+      file_name = File.basename(file)
+      bin_prefix = self.class.platform == :centos && file_name == 'packer' ? 'packer.io' : file_name
+      file_path = File.join(File.dirname(file), bin_prefix)
+
+      bin.install(file, bin_prefix)
+    end
   end
 end
 
