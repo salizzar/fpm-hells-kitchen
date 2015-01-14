@@ -1,6 +1,5 @@
 class Terraform036 < FPM::Cookery::Recipe
   name        'terraform'
-  arch        'x86_64'
   version     '0.3.6'
   revision    0
   description 'A tool for building, changing, and versioning infrastructure safely and efficiently.'
