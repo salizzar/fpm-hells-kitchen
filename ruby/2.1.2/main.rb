@@ -11,7 +11,7 @@ class Ruby212 < FPM::Cookery::Recipe
   build_depends 'autoconf', 'readline-devel', 'bison', 'zlib-devel', 'openssl-devel', 'libyaml-devel'
 
   def build
-    configure :prefix => prefix, 'disable-install-doc' => true
+    configure :prefix => prefix, 'disable-install-doc' => true, 'enable-shared' => true
     make
   end
 
