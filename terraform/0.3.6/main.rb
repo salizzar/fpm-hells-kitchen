@@ -9,6 +9,8 @@ class Terraform036 < FPM::Cookery::Recipe
   source      "https://dl.bintray.com/mitchellh/terraform/terraform_#{version}_linux_amd64.zip"
   sha256      "4c5890b098d07e4902e76331b576762632d6443e50030acb818b9a3d642a91c5"
 
+  build_depends 'zip'
+
   def build
   end
 
