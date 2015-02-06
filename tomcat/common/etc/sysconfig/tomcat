@@ -1,0 +1,5 @@
+CATALINA_HOME=/opt/tomcat
+CATALINA_BASE=/opt/tomcat/webapps
+CATALINA_OPTS="-XX:MaxPermSize=1024m -Xms4072M -Xmx17000M -XX:+HeapDumpOnOutOfMemoryError -XX:+PrintGCDetails -XX:+PrintGCDateStamps  -verbose:gc -Xloggc:$CATALINA_BASE/logs/gc.log -Dorg.apache.jasper.compiler.Parser.STRICT_QUOTE_ESCAPING=false"
+CATALINA_PID=/var/run/tomcat.pid
+
