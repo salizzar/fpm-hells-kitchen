@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+id tomcat > /dev/null 2>&1 || adduser --home /opt/tomcat --shell /bin/bash --system tomcat --user-group
+
