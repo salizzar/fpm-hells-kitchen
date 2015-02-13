@@ -1,3 +1,9 @@
 #! /usr/bin/env bash
 
-chown -R tomcat. /opt/tomcat
+chown -R tomcat.	/etc/tomcat		\
+			/usr/share/tomcat 	\
+			/usr/share/java/tomcat	\
+			/var/cache/tomcat	\
+			/var/lib/tomcat 	\
+			/var/log/tomcat
+

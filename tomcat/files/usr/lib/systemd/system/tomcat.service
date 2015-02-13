@@ -12,8 +12,8 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
-ExecStart=/opt/tomcat/bin/startup.sh
-ExecStop=/opt/tomcat/bin/shutdown.sh
+ExecStart=/usr/share/tomcat/bin/startup.sh
+ExecStop=/usr/share/tomcat/bin/shutdown.sh
 SuccessExitStatus=143
 User=tomcat
 Group=tomcat
