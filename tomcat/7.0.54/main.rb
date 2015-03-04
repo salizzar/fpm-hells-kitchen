@@ -91,7 +91,7 @@ class Tomcat7054 < FPM::Cookery::Recipe
     webapps_glob = File.join(builddir(path), 'webapps', '*')
 
     Dir[webapps_glob].each do |file|
-      var('lib/tomcat/webapps').install(file) if (file =~ /\/webapps\/examples/i).nil?
+      var('lib/tomcat/webapps').install(file) if (file =~ /\/webapps\/(docs|examples|host-manager)/i).nil?
     end
 
     with_trueprefix { ln_s var('lib/tomcat/webapps'), destdir(share('tomcat/webapps').to_s) }
