@@ -12,6 +12,7 @@ After=syslog.target network.target
 
 [Service]
 Type=forking
+EnvironmentFile=-/etc/sysconfig/tomcat
 ExecStart=/usr/share/tomcat/bin/startup.sh
 ExecStop=/usr/share/tomcat/bin/shutdown.sh
 SuccessExitStatus=143

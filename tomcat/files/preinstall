@@ -1,4 +1,4 @@
 #! /usr/bin/env bash
 
-id tomcat > /dev/null 2>&1 || adduser --home /usr/share/tomcat --shell /bin/bash --system tomcat --user-group
+id tomcat > /dev/null 2>&1 || adduser --home /usr/share/tomcat --shell /sbin/nologin --system tomcat --user-group
 

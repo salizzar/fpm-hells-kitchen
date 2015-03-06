@@ -26,6 +26,7 @@ class Tomcat7054 < FPM::Cookery::Recipe
     install_bin(path)
     install_conf(path)
     install_lib(path)
+    install_run(path)
     install_logs(path)
     install_temp(path)
     install_webapps(path)
@@ -73,6 +74,10 @@ class Tomcat7054 < FPM::Cookery::Recipe
     Dir[lib_glob].each { |file| share('java/tomcat').install file }
 
     with_trueprefix { ln_s share('java/tomcat'), destdir(share('tomcat/lib').to_s) }
+  end
+
+  def install_run(path)
+    var('run/tomcat').mkdir
   end
 
   def install_logs(path)
