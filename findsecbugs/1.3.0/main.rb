@@ -1,6 +1,6 @@
-class FindSecBugs301 < FPM::Cookery::Recipe
+class FindSecBugs130 < FPM::Cookery::Recipe
   name          'findbugs-findsecbugs-plugin'
-  version       '3.0.1'
+  version       '1.3.0'
   revision      0
   description   'Find Security Bugs plugin for findbugs'
   homepage      'http://findbugs.sourceforge.net'
