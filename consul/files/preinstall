@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+id consul > /dev/null 2>&1 || adduser --home /var/lib/consul --shell /sbin/nologin --system consul --user-group
+
