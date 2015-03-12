@@ -40,13 +40,13 @@ class Consul050 < FPM::Cookery::Recipe
 
   def install_etc
     etc('consul.d/bootstrap').mkdir
-    etc('consul.d/bootstrap').install workdir('files/etc/consul.d/bootstrap/consul.conf')
+    etc('consul.d/bootstrap').install workdir('files/etc/consul.d/bootstrap/consul.json')
 
     etc('consul.d/server').mkdir
-    etc('consul.d/server').install workdir('files/etc/consul.d/server/consul.conf')
+    etc('consul.d/server').install workdir('files/etc/consul.d/server/consul.json')
 
     etc('consul.d/agent').mkdir
-    etc('consul.d/agent').install workdir('files/etc/consul.d/agent/consul.conf')
+    etc('consul.d/agent').install workdir('files/etc/consul.d/agent/consul.json')
   end
 
   def install_var_lib
@@ -71,9 +71,11 @@ class Consul050 < FPM::Cookery::Recipe
 
   def install_bin
     folder = File.join(File.basename(source, '.zip'))
-    glob = File.join(builddir(folder), 'consul', '*')
+    glob = File.join(builddir(folder), 'consul')
 
-    Dir[glob].each { |file| bin.install(file) }
+    Dir[glob].each do |file|
+      bin.install(file)
+    end
   end
 
   def get_ui_zip_name
