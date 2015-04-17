@@ -10,7 +10,7 @@ class SensuCommunityPlugins_0_17_2 < FPM::Cookery::Recipe
 
   build_depends 'mariadb-devel', 'libxml2-devel', 'libxslt-devel'
 
-  depends       'sensu'
+  depends       'sensu', 'nmap'
 
   REQUIRED_GEMS = %w(mysql mysql2 inifile)
 
