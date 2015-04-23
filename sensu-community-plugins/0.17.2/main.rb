@@ -5,14 +5,14 @@ class SensuCommunityPlugins_0_17_2 < FPM::Cookery::Recipe
   revision    0
   homepage    "https://github.com/sensu/sensu-community-plugins"
   source      "https://github.com/sensu/sensu-community-plugins/archive/master.zip"
-  sha256      "06c694b4dd74cf96e3b53b4c877bb216b4a88fb4592bd17e083734a26b236488"
+  sha256      "b96ffd1cc295c69be728f43c55aa4ec575e6aec82bc00336e10f54acc4f8373b"
   section     "operations"
 
   build_depends 'mariadb-devel', 'libxml2-devel', 'libxslt-devel'
 
-  depends       'sensu', 'nmap'
+  depends       'nmap'
 
-  REQUIRED_GEMS = %w(mysql mysql2 inifile)
+  REQUIRED_GEMS = %w(mysql mysql2 inifile docker-api excon)
 
   def build
     repo = %{
@@ -25,7 +25,10 @@ enabled=1
 
     safesystem("/usr/bin/echo '#{repo}' > /etc/yum.repos.d/sensu.repo")
 
+    safesystem("/usr/bin/yum clean all")
     safesystem("/usr/bin/yum install -y sensu")
+
+    self.depends << 'sensu'
 
     safesystem("/usr/bin/echo 'EMBEDDED_RUBY=true' > /etc/default/sensu")
 
