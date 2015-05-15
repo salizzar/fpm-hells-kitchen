@@ -2,7 +2,7 @@ class SensuCommunityPlugins_0_17_2 < FPM::Cookery::Recipe
   description 'Sensu Community Plugins'
   name        'sensu-community-plugins'
   version     '0.17.2'
-  revision    0
+  revision    1
   homepage    "https://github.com/sensu/sensu-community-plugins"
   source      "https://github.com/sensu/sensu-community-plugins/archive/master.zip"
   sha256      "b96ffd1cc295c69be728f43c55aa4ec575e6aec82bc00336e10f54acc4f8373b"
@@ -12,7 +12,7 @@ class SensuCommunityPlugins_0_17_2 < FPM::Cookery::Recipe
 
   depends       'nmap'
 
-  REQUIRED_GEMS = %w(mysql mysql2 inifile docker-api excon)
+  REQUIRED_GEMS = %w(mysql mysql2 inifile docker-api excon redis rest_client carrot-top raindrops netrc)
 
   def build
     repo = %{
