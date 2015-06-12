@@ -19,3 +19,6 @@ SuccessExitStatus=143
 User=tomcat
 Group=tomcat
 
+[Install]
+WantedBy=multi-user.target
+
