@@ -2,7 +2,7 @@ class Tomcat7054 < FPM::Cookery::Recipe
   name        'tomcat'
   version     '7.0.54'
   arch        :noarch
-  revision    0
+  revision    ENV['TOMCAT_REVISION'] || 0
   description 'Apache Servlet/JSP Engine'
   homepage    'http://tomcat.apache.org/'
   section     'tools'

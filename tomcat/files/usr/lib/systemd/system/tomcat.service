@@ -13,6 +13,9 @@ After=syslog.target network.target
 [Service]
 Type=forking
 EnvironmentFile=-/etc/sysconfig/tomcat
+PermissionsStartOnly=true
+ExecStartPre=/usr/bin/mkdir -p /var/run/tomcat
+ExecStartPre=/usr/bin/chown -R tomcat:tomcat /var/run/tomcat
 ExecStart=/usr/share/tomcat/bin/startup.sh
 ExecStop=/usr/share/tomcat/bin/shutdown.sh
 SuccessExitStatus=143
