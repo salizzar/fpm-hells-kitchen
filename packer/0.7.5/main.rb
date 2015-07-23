@@ -2,7 +2,7 @@ class Packer075 < FPM::Cookery::Recipe
   name        'packer'
   version     '0.7.5'
   revision    0
-  description 'A tool to create identical machine images for multiple platforms fro a single source configuration.'
+  description 'A tool to create identical machine images for multiple platforms from a single source configuration.'
   homepage    'http://packer.io'
   section     'admin'
 
