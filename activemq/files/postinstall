@@ -1,0 +1,7 @@
+#! /usr/bin/env bash
+
+chown -R activemq.	/etc/activemq		\
+			/usr/share/activemq	\
+			/var/cache/activemq	\
+			/var/lib/activemq	\
+			/var/log/activemq

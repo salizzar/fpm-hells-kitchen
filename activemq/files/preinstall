@@ -1,0 +1,4 @@
+#! /usr/bin/env bash
+
+id activemq > /dev/null 2>&1 || adduser --home /usr/share/activemq --shell /sbin/nologin --system activemq --user-group
+
