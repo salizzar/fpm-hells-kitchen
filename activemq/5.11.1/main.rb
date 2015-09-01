@@ -39,6 +39,30 @@ class ActiveMQ_5_11_1 < FPM::Cookery::Recipe
     builddir(path)
   end
 
+  def install_init(path)
+    etc('rc.d/init.d').mkdir
+
+    init_path = File.join(path, 'bin', 'linux-x86-64', 'activemq')
+    etc('rc.d/init.d').install(init_path)
+
+    hack_activemq_initd
+  end
+
+  def hack_activemq_initd
+    old_initd = File.read(etc('rc.d/init.d/activemq').to_s)
+
+    new_initd = old_initd
+                  .gsub(/^ACTIVEMQ_HOME=(.*)$/, 'ACTIVEMQ_HOME="/usr/share/activemq"')
+                  .gsub(/^WRAPPER_CMD=(.*)$/,   'WRAPPER_CMD="/usr/lib/activemq/linux/wrapper"')
+                  .gsub(/^WRAPPER_CONF=(.*)$/,  'WRAPPER_CONF="/etc/activemq/wrapper.conf"')
+                  .gsub(/^PID_DIR=(.*)$/,       'PID_DIR="/var/run/activemq"')
+                  .gsub(/^PIDDIR=(.*)$/,        'PIDDIR="/var/run/activemq"')
+
+    initd = File.open(etc('rc.d/init.d/activemq').to_s, "w")
+    initd.write(new_initd)
+    initd.close
+  end
+
   def install_etc(path)
     etc('activemq').mkdir
     share('activemq').mkdir
@@ -51,6 +75,24 @@ class ActiveMQ_5_11_1 < FPM::Cookery::Recipe
     etc('activemq').install(wrapper_path)
 
     with_trueprefix { ln_s(etc('activemq'), destdir(share('activemq/conf').to_s)) }
+
+    hack_activemq_wrapper_conf
+  end
+
+  def hack_activemq_wrapper_conf
+    old_conf = File.read(etc('activemq/wrapper.conf'))
+
+    new_conf = old_conf
+                  .gsub(/^set.default.ACTIVEMQ_HOME=(.*)$/,   'set.default.ACTIVEMQ_HOME=/usr/share/activemq')
+                  .gsub(/^set.default.ACTIVEMQ_BASE=(.*)$/,   'set.default.ACTIVEMQ_BASE=/usr/share/activemq')
+                  .gsub(/^wrapper.java.classpath.1=(.*)$/,    'wrapper.java.classpath.1=%ACTIVEMQ_HOME%/bin/wrapper.jar')
+                  .gsub(/^wrapper.java.classpath.2=(.*)$/,    'wrapper.java.classpath.2=%ACTIVEMQ_HOME%/bin/activemq.jar')
+                  .gsub(/^wrapper.java.library.path.1=(.*)$/, 'wrapper.java.library.path.1=/usr/lib/activemq/linux/')
+                  .gsub(/^wrapper.working.dir=(.*)$/,         'wrapper.working.dir=/var/log/activemq')
+
+    wrapper_conf = File.open(etc('activemq/wrapper.conf'), 'w')
+    wrapper_conf.write(new_conf)
+    wrapper_conf.close
   end
 
   def install_share(path)
@@ -125,13 +167,6 @@ class ActiveMQ_5_11_1 < FPM::Cookery::Recipe
     %w(README.txt LICENSE NOTICE docs).each do |file|
       share(doc_path).install(File.join(path, file))
     end
-  end
-
-  def install_init(path)
-    etc('init.d').mkdir
-
-    init_path = File.join(path, 'bin', 'linux-x86-64', 'activemq')
-    etc('init.d').install(init_path)
   end
 end
 
