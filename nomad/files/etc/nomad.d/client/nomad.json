@@ -1,0 +1,9 @@
+{
+  "datacenter": "nomad-lab",
+  "data_dir": "/var/lib/nomad",
+  "log_level": "DEBUG",
+  "client": {
+      "enabled": true,
+      "servers": [ "10.0.0.190", "10.0.0.191", "10.0.0.192", "10.0.0.193", "10.0.0.194" ]
+    }
+}
