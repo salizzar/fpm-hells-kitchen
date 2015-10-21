@@ -1,0 +1,11 @@
+{
+  "datacenter": "nomad-lab",
+  "region": "us",
+  "data_dir": "/var/lib/nomad",
+  "log_level": "DEBUG",
+  "bind_addr": "127.0.0.1",
+  "server": {
+      "enabled": true,
+      "bootstrap_expect": 5
+    }
+}
