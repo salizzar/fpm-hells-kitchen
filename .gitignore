@@ -5,6 +5,7 @@
 cache
 pkg
 tmp*
+*.tar.gz
 
 *.gem
 *.rbc
